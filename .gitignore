@@ -1,0 +1,11 @@
+# Jekyll build output
+_site/
+.jekyll-cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/

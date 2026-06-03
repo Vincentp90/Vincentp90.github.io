@@ -1,0 +1,155 @@
+.page {
+  h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .page-description {
+    color: var(--color-text-muted);
+    font-size: 1.05rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Blog list */
+.blog-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.blog-card {
+  padding: 1.25rem;
+  background: var(--color-bg-alt);
+  border-radius: var(--radius);
+  transition: background 0.2s;
+
+  &:hover {
+    background: var(--color-accent-light);
+  }
+}
+
+.blog-card-title {
+  font-size: 1.15rem;
+  margin-bottom: 0.3rem;
+
+  a {
+    color: var(--color-text);
+
+    &:hover {
+      color: var(--color-accent);
+    }
+  }
+}
+
+.blog-card-date {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.blog-card-excerpt {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.empty-state {
+  color: var(--color-text-muted);
+  text-align: center;
+  padding: 3rem 0;
+}
+
+/* Post */
+.post {
+  .post-header {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .post-title {
+    font-size: 1.8rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .post-date {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+
+  .post-content {
+    h2, h3, h4 {
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+    }
+
+    ul, ol {
+      padding-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    li {
+      margin-bottom: 0.3rem;
+    }
+
+    pre {
+      background: var(--color-code-bg);
+      padding: 1rem;
+      border-radius: var(--radius);
+      overflow-x: auto;
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+
+      code {
+        font-family: var(--font-mono);
+        background: none;
+        padding: 0;
+      }
+    }
+
+    code {
+      font-family: var(--font-mono);
+      background: var(--color-code-bg);
+      padding: 0.15rem 0.4rem;
+      border-radius: 3px;
+      font-size: 0.85em;
+    }
+
+    blockquote {
+      border-left: 3px solid var(--color-accent);
+      padding-left: 1rem;
+      color: var(--color-text-muted);
+      margin-bottom: 1rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1rem;
+
+      th, td {
+        padding: 0.5rem 0.75rem;
+        border: 1px solid var(--color-border);
+        text-align: left;
+      }
+
+      th {
+        background: var(--color-bg-alt);
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}

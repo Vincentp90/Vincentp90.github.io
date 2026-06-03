@@ -1,1 +1,29 @@
-<p>Hello World</p>
+---
+layout: default
+---
+
+<section class="landing">
+  <div class="landing-hero">
+    <h1 class="landing-title">Hi, I'm {{ site.author.name }}</h1>
+    <p class="landing-subtitle">Software Developer · Builder · Writer</p>
+    <div class="landing-actions">
+      <a href="{{ '/resume/' | relative_url }}" class="btn btn-primary">View Resume</a>
+      <a href="{{ '/blog/' | relative_url }}" class="btn btn-secondary">Read Blog</a>
+    </div>
+  </div>
+
+  {% if site.posts.size > 0 %}
+  <section class="landing-latest">
+    <h2 class="landing-section-title">Latest Posts</h2>
+    <div class="landing-posts">
+      {% for post in site.posts limit: 3 %}
+        <a href="{{ post.url | relative_url }}" class="landing-post-card">
+          <h3 class="landing-post-title">{{ post.title }}</h3>
+          <time class="landing-post-date">{{ post.date | date: "%B %d, %Y" }}</time>
+          <p class="landing-post-excerpt">{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+</section>

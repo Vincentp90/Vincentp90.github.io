@@ -1,0 +1,46 @@
+name: "TODO"
+title: "Software Developer"
+location: "City, Country"
+email: "your.email@example.com"
+phone: "+1 234 567 890"
+links:
+  github: "https://github.com/yourusername"
+  linkedin: "https://linkedin.com/in/yourusername"
+  website: "https://yourusername.github.io"
+
+education:
+  - degree: "Master of Science in Engineering"
+    school: "University Name"
+    year: "2012 – 2013"
+    details: ""
+
+experience:
+  - role: "Software Developer"
+    company: "Company Name"
+    period: "2013 – 2025"
+    details:
+      - "Lorem ipsum"
+      - "dolor sit amet"
+  - role: "Junior Developer"
+    company: "Startup Name"
+    period: "2021 – 2022"
+    details:
+      - "Lorem ipsum"
+      - "dolor sit amet"
+
+skills:
+  languages:
+    - name: "JavaScript"
+      level: 90
+    - name: "Python"
+      level: 80
+    - name: "TypeScript"
+      level: 75
+    - name: "Go"
+      level: 60
+  tools:
+    - "Git"
+    - "Docker"
+    - "AWS"
+    - "PostgreSQL"
+    - "Redis"

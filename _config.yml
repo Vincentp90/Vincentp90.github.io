@@ -1,1 +1,33 @@
-theme: jekyll-theme-cayman
+title: Vincent's Resume & Blog
+description: Software Developer — Resume and technical blog
+baseurl: ""
+url: "https://vincentp90.github.io"
+author:
+  name: Vincent
+  email: your.email@example.com
+  github: vincentp90
+# Build settings
+# theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      author: Vincent
+
+sass:
+  style: compressed
+  source_map: false
+
+# Exclude from build
+exclude:
+  - README.md
+  - AGENTS.md
+  - .gitignore
+  - .git/

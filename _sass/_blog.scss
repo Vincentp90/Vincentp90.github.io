@@ -1,13 +1,15 @@
 .page {
   h1 {
-    font-size: 1.8rem;
+    font-size: 2rem;
     margin-bottom: 0.5rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
   }
 
   .page-description {
     color: var(--color-text-muted);
     font-size: 1.05rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
   }
 }
 
@@ -19,22 +21,28 @@
 }
 
 .blog-card {
-  padding: 1.25rem;
-  background: var(--color-bg-alt);
+  padding: 1.5rem;
+  background: var(--color-bg);
   border-radius: var(--radius);
-  transition: background 0.2s;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--color-card-shadow);
+  transition: all 0.3s ease;
 
   &:hover {
     background: var(--color-accent-light);
+    box-shadow: var(--color-card-shadow-hover);
+    transform: translateY(-3px);
   }
 }
 
 .blog-card-title {
-  font-size: 1.15rem;
-  margin-bottom: 0.3rem;
+  font-size: 1.2rem;
+  margin-bottom: 0.35rem;
+  font-weight: 600;
 
   a {
     color: var(--color-text);
+    transition: color 0.25s ease;
 
     &:hover {
       color: var(--color-accent);
@@ -46,102 +54,187 @@
   display: block;
   font-size: 0.8rem;
   color: var(--color-text-muted);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
+  font-weight: 500;
 }
 
 .blog-card-excerpt {
   color: var(--color-text-muted);
   font-size: 0.95rem;
+  line-height: 1.6;
 }
 
 .empty-state {
   color: var(--color-text-muted);
   text-align: center;
-  padding: 3rem 0;
+  padding: 4rem 0;
+  font-size: 1.1rem;
+  font-weight: 500;
 }
 
 /* Post */
 .post {
   .post-header {
-    margin-bottom: 1.5rem;
-    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.25rem;
     border-bottom: 1px solid var(--color-border);
   }
 
   .post-title {
-    font-size: 1.8rem;
-    margin-bottom: 0.3rem;
+    font-size: 2rem;
+    margin-bottom: 0.4rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
   }
 
   .post-date {
     display: block;
     font-size: 0.85rem;
     color: var(--color-text-muted);
+    font-weight: 500;
   }
 
   .post-content {
-    h2, h3, h4 {
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+      padding-left: 1rem;
+      border-left: 3px solid transparent;
+      border-image: var(--color-accent-gradient) 1;
+      position: relative;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      margin-top: 1.75rem;
+      margin-bottom: 0.6rem;
+      font-weight: 600;
+    }
+
+    h4 {
+      font-size: 1.1rem;
       margin-top: 1.5rem;
       margin-bottom: 0.5rem;
+      font-weight: 600;
     }
 
     p {
-      margin-bottom: 1rem;
+      margin-bottom: 1.25rem;
+      line-height: 1.8;
     }
 
     ul, ol {
       padding-left: 1.5rem;
-      margin-bottom: 1rem;
-    }
+      margin-bottom: 1.25rem;
 
-    li {
-      margin-bottom: 0.3rem;
+      li {
+        margin-bottom: 0.4rem;
+        line-height: 1.7;
+
+        &::marker {
+          color: var(--color-accent);
+        }
+      }
     }
 
     pre {
-      background: var(--color-code-bg);
-      padding: 1rem;
+      background: #1a1a2e;
+      padding: 1.25rem;
       border-radius: var(--radius);
       overflow-x: auto;
       font-size: 0.85rem;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--color-card-shadow);
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 32px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
+        border-radius: var(--radius) var(--radius) 0 0;
+      }
 
       code {
         font-family: var(--font-mono);
         background: none;
         padding: 0;
+        color: #e8f5e9;
+        font-size: 0.85rem;
+        line-height: 1.6;
       }
     }
 
     code {
       font-family: var(--font-mono);
       background: var(--color-code-bg);
-      padding: 0.15rem 0.4rem;
-      border-radius: 3px;
+      padding: 0.2rem 0.5rem;
+      border-radius: 5px;
       font-size: 0.85em;
+      font-weight: 500;
+      color: var(--color-accent-hover);
+      border: 1px solid var(--color-border);
     }
 
     blockquote {
-      border-left: 3px solid var(--color-accent);
-      padding-left: 1rem;
-      color: var(--color-text-muted);
-      margin-bottom: 1rem;
+      border-left: none;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, var(--color-accent-light) 0%, var(--color-bg-alt) 100%);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      border-right: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+      border-top: 1px solid var(--color-border);
+      color: var(--color-text);
+      font-style: italic;
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background: var(--color-accent-gradient);
+        border-radius: var(--radius) 0 0 var(--radius);
+      }
     }
 
     table {
       width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 1rem;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin-bottom: 1.5rem;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--color-card-shadow);
 
       th, td {
-        padding: 0.5rem 0.75rem;
-        border: 1px solid var(--color-border);
+        padding: 0.75rem 1rem;
+        border: none;
+        border-bottom: 1px solid var(--color-border);
         text-align: left;
       }
 
       th {
-        background: var(--color-bg-alt);
+        background: linear-gradient(180deg, var(--color-bg-alt) 0%, #e8f5e9 100%);
         font-weight: 600;
+        color: var(--color-text);
+      }
+
+      tr:last-child td {
+        border-bottom: none;
+      }
+
+      tr:hover td {
+        background: var(--color-accent-light);
       }
     }
   }
@@ -149,7 +242,18 @@
 
 .back-link {
   display: inline-block;
-  margin-top: 2rem;
+  margin-top: 2.5rem;
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  background: var(--color-accent-light);
+  border-radius: var(--radius);
+  transition: all 0.25s ease;
+
+  &:hover {
+    background: var(--color-accent);
+    color: #fff;
+    text-decoration: none;
+    transform: translateY(-1px);
+  }
 }

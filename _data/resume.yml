@@ -1,46 +1,95 @@
-name: "TODO"
-title: "Software Developer"
-location: "City, Country"
-email: "your.email@example.com"
-phone: "+1 234 567 890"
+name: "Vincent Poté"
+title: ".NET Developer"
+location: "Mannheim, Germany"
+email: ""
+phone: ""
 links:
-  github: "https://github.com/yourusername"
-  linkedin: "https://linkedin.com/in/yourusername"
-  website: "https://yourusername.github.io"
+  github: "https://github.com/Vincentp90"
+  linkedin: "https://linkedin.com/in/vincent-poté-7818167b"
 
 education:
-  - degree: "Master of Science in Engineering"
-    school: "University Name"
-    year: "2012 – 2013"
-    details: ""
+  - degree: "Master in Industrial Sciences: Electronics-ICT"
+    school: "Campus De Nayer, Thomas More Hogeschool, KU Leuven association"
+    year: "2012 - 2013"
+    details: "Minor ICT"
+  - degree: "Bachelor in Industrial Sciences: Electronics-ICT"
+    school: "Campus De Nayer, Thomas More Hogeschool"
+    year: "2009 - 2012"
+    details: "Minor ICT"
 
 experience:
-  - role: "Software Developer"
-    company: "Company Name"
-    period: "2013 – 2025"
+  - role: "Software Developer / Consultant"
+    company: "DXC FDS"
+    period: "2013 - 2025"
     details:
-      - "Lorem ipsum"
-      - "dolor sit amet"
-  - role: "Junior Developer"
-    company: "Startup Name"
-    period: "2021 – 2022"
-    details:
-      - "Lorem ipsum"
-      - "dolor sit amet"
+      - "Location: Mechelen, Belgium"
+      - ".NET and SharePoint developer on various projects"
+    projects:
+      - role: "Software Developer"
+        client: "Flemish Government, Flanders Hydraulics"
+        period: "2024 - Sep 2025"
+        details:
+          - "Made C# tools to aid development and maintenance of a ship simulator"
+          - "Built Unreal Engine POC in C++"
+          - "Provided support for C# applications processing nautical experiment results in a towing tank"
+      - role: "Lead Developer"
+        client: "Flemish Government, Wonen In Vlaanderen"
+        period: "2022 - 2024"
+        details:
+          - "Lead developer in a 10-person team developing a web application"
+          - "Implemented a citizen portal and back-office system for ~200,000 registered users (up to 2,000 concurrent users)"
+          - "Migrated 4 legacy databases into one central database according to complex business rules"
+          - "Key contributor to on-time delivery of a highly visible project"
+          - "Technologies: .NET 8, .NET Framework, ASP.NET MVC, Entity Framework, SQL Server, API (OAS3), jQuery, JavaScript, WCF"
+      - role: "Software Developer"
+        client: "Small O365,SharePoint projects for various clients"
+        period: "2020 - 2022"
+        details:
+          - "Clients: BMW, ApoBank, CLP (China Light Power), IBZ (Belgian Government: Federal Public Service Interior)"
+          - "Technologies: SharePoint, Power Apps, Power Automate, Azure Functions, JavaScript, C#"
+      - role: "DevOps Engineer"
+        client: "internal project"
+        period: "2019 - 2020"
+        details:
+          - "Maintaining and expanding a custom CI/CD platform"
+          - "Technologies: Jenkins, Ansible, Python, Groovy, Java, Linux"
+      - role: "SharePoint Developer"
+        client: "Flemish Government, Maritime Access"
+        period: "2016 - 2019"
+        details:
+          - "Development of custom features in SharePoint on-premise"
+          - "SPFx, Kendo UI, jQuery and farm solutions in C#"
+      - role: "Software Developer"
+        client: "ING Belgium"
+        period: "2013 - 2016"
+        details:
+          - "Migrating VB6 applications to .NET, WPF or WinForms"
+          - "Data layer in ADO.NET and Entity Framework with Oracle database"
+    
 
 skills:
   languages:
-    - name: "JavaScript"
+    - name: ".NET (C#)"
+      level: 95
+    - name: "SharePoint"
       level: 90
+    - name: "JavaScript / TypeScript"
+      level: 70
     - name: "Python"
-      level: 80
-    - name: "TypeScript"
-      level: 75
-    - name: "Go"
-      level: 60
+      level: 50
+    - name: "C++"
+      level: 30
   tools:
-    - "Git"
-    - "Docker"
-    - "AWS"
+    - "Azure (App Service, SQL Database, Functions, VM, Logs)"
+    - "MS SQL Server"
     - "PostgreSQL"
-    - "Redis"
+    - "Oracle"
+    - "Entity Framework"
+    - "Docker"
+    - "Git / GitHub / GitLab"
+    - "Azure DevOps / TFS"
+    - "React"
+    - "Tailwind"
+    - "REST APIs / WebApi"
+    - "WCF"
+    - "CI/CD (Jenkins, Ansible)"

@@ -31,3 +31,7 @@ exclude:
   - AGENTS.md
   - .gitignore
   - .git/
+  - Gemfile
+  - Gemfile.lock
+  - .ruby-version
+  - .jekyll-cache/

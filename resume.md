@@ -12,11 +12,11 @@ permalink: /resume/
   <p class="hero-title">{{ data.title }}</p>
   <p class="hero-location">{{ data.location }}</p>
   <div class="hero-contact">
-    {% if data.email %}<a href="mailto:{{ data.email }}">{{ data.email }}</a>{% endif %}
-    {% if data.phone %}<span>{{ data.phone }}</span>{% endif %}
+    {% if data.email %}<a href="mailto:{{ data.email }}">{{ data.email }}</a>{% endif %}    
     {% for link in data.links %}
       <a href="{{ link.last }}" target="_blank" rel="noopener">{{ link.first | capitalize }}</a>
     {% endfor %}
+    {% if data.phone %}<span>{{ data.phone }}</span>{% endif %}
   </div>
 </section>
 
@@ -35,6 +35,24 @@ permalink: /resume/
           <li>{{ detail }}</li>
         {% endfor %}
       </ul>
+      {% if job.projects %}
+        <div class="projects">
+          {% for project in job.projects %}
+            <div class="project">
+              <div class="job-header">
+                <h3 class="job-role">{{ project.role }}</h3>
+                <span class="job-period">{{ project.period }}</span>
+              </div>
+              <p class="job-company">{{ project.client }}</p>
+              <ul class="job-details">
+                {% for detail in project.details %}
+                  <li>{{ detail }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
     </div>
   {% endfor %}
 </section>

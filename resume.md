@@ -100,6 +100,17 @@ permalink: /resume/
   {% endif %}
 </section>
 
+<!-- Spoken Languages -->
+<section class="resume-section">
+  <h2 class="section-title">Spoken Languages</h2>
+  {% for lang in data.spoken_languages %}
+    <div class="language-item">
+      <span class="language-name">{{ lang.name }}</span>
+      <span class="language-level">{{ lang.level }}</span>
+    </div>
+  {% endfor %}
+</section>
+
 <!-- Blog preview -->
 <section class="resume-section">
   <h2 class="section-title">Latest Posts</h2>

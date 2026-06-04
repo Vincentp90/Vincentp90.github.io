@@ -191,6 +191,33 @@
   font-weight: 500;
 }
 
+/* Spoken Languages */
+.language-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.5rem 0.75rem;
+  background: var(--color-bg-alt);
+  border-radius: var(--radius);
+  margin-bottom: 0.5rem;
+}
+
+.language-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.language-level {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-accent-hover);
+  background: var(--color-accent-light);
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius);
+  white-space: nowrap;
+}
+
 /* Blog preview on resume */
 .blog-preview {
   display: flex;
@@ -222,3 +249,9 @@
   font-size: 0.8rem;
   color: var(--color-text-muted);
 }
+
+.projects {
+  margin-left: 2.5rem;
+  margin-top: 0.5rem;
+}
+

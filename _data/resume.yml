@@ -67,6 +67,16 @@ experience:
           - "Data layer in ADO.NET and Entity Framework with Oracle database"
     
 
+spoken_languages:
+  - name: "Dutch"
+    level: "Mother language"
+  - name: "English"
+    level: "C2"
+  - name: "German"
+    level: "B2 (speaking, writing), C1 (hearing, reading)"
+  - name: "French"
+    level: "A2"
+
 skills:
   languages:
     - name: ".NET (C#)"

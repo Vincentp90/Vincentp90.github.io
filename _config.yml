@@ -35,3 +35,4 @@ exclude:
   - Gemfile.lock
   - .ruby-version
   - .jekyll-cache/
+  - opencode.json

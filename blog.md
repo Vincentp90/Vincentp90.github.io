@@ -7,13 +7,13 @@ description: Technical writing and thoughts.
 
 <div class="blog-list">
   {% for post in site.posts %}
-    <article class="blog-card">
-      <h2 class="blog-card-title">
-        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-      </h2>
-      <time class="blog-card-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time>
-      <p class="blog-card-excerpt">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
-    </article>
+    <a href="{{ post.url | relative_url }}" class="blog-card-link">
+      <article class="blog-card">
+        <h2 class="blog-card-title">{{ post.title }}</h2>
+        <time class="blog-card-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time>
+        <p class="blog-card-excerpt">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+      </article>
+    </a>
   {% endfor %}
 </div>
 

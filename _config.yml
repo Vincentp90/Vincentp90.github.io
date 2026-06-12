@@ -36,3 +36,9 @@ exclude:
   - .ruby-version
   - .jekyll-cache/
   - opencode.json
+  - node_modules/
+  - src/
+  - index-vite.html
+  - package-lock.json
+  - package.json
+  - vite.config.js

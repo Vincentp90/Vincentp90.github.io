@@ -76,13 +76,50 @@ function TranslatorApp() {
   const [outputText, setOutputText] = useState('')
   const [isTranslating, setIsTranslating] = useState(false)
 
-  const handleTranslate = () => {
+  const handleTranslate = async () => {
+    const apiKey = localStorage.getItem('gemini_api_key')
+    if (!apiKey) {
+      alert('Please enter your Gemini API key in the API Key section.')
+      return
+    }
+
     setIsTranslating(true)
-    // TODO: call Gemini API
-    setTimeout(() => {
-      setOutputText('Translation will appear here...')
+    const langMap = { en: 'English', nl: 'Dutch' }
+    const target = langMap[targetLang] || targetLang
+
+    const prompt = `Translate the following text to ${target}. Only output the translation, nothing else.\n\n${inputText}`
+
+    try {
+      const response = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${apiKey}`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{ role: 'user', parts: [{ text: prompt }] }],
+          }),
+        }
+      )
+
+      if (!response.ok) {
+        const errData = await response.json()
+        throw new Error(errData?.error?.message || `API error: ${response.status}`)
+      }
+
+      const data = await response.json()
+      const translated = data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim()
+
+      if (translated) {
+        setOutputText(translated)
+      } else {
+        setOutputText('No translation returned. Please try again.')
+      }
+    } catch (error) {
+      console.error('Translation failed:', error)
+      setOutputText(`Error: ${error.message}`)
+    } finally {
       setIsTranslating(false)
-    }, 1000)
+    }
   }
 
   const handleSourceChange = (lang) => {

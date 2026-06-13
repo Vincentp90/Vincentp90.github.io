@@ -53,16 +53,19 @@ function ApiKeyCard() {
       </div>
       {show && (
         <div className="api-key-body">
-          <input
-            type="password"
-            className="api-key-input"
-            value={apiKey}
-            onChange={(e) => setApiKey(e.target.value)}
-            placeholder="Enter your Gemini API key"
-          />
-          <button className="api-key-save" onClick={handleSave}>
-            {saved ? 'Saved!' : 'Save'}
-          </button>
+          <div className="api-key-input-row">
+            <input
+              type="password"
+              className="api-key-input"
+              value={apiKey}
+              onChange={(e) => setApiKey(e.target.value)}
+              placeholder="Enter your Gemini API key"
+            />
+            <button className="api-key-save" onClick={handleSave}>
+              {saved ? 'Saved!' : 'Save'}
+            </button>
+          </div>
+          <p className="api-key-warning">⚠️ Your API key is stored in your browser's localStorage. It is only send to the Gemini API server. Still, be careful, a website like this could steal your key. You can verify the source code on github, and check your network tab. Also, create a separate API key just for this. Anyone with access to this key can make API calls on your behalf. Never share your key publicly.</p>
         </div>
       )}
     </div>
@@ -75,6 +78,8 @@ function TranslatorApp() {
   const [inputText, setInputText] = useState('')
   const [outputText, setOutputText] = useState('')
   const [isTranslating, setIsTranslating] = useState(false)
+  const [showAbout, setShowAbout] = useState(false)
+  const [selectedModel, setSelectedModel] = useState('gemini-3.1-flash-lite')
 
   const handleTranslate = async () => {
     const apiKey = localStorage.getItem('gemini_api_key')
@@ -93,7 +98,7 @@ function TranslatorApp() {
 
     try {
       const response = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent?key=${apiKey}`,
+        `https://generativelanguage.googleapis.com/v1beta/models/${selectedModel}:generateContent?key=${apiKey}`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -139,6 +144,25 @@ function TranslatorApp() {
 
   return (
     <div className="translator-app">
+      <div className="api-key-card">
+        <div className="api-key-header" onClick={() => setShowAbout(!showAbout)}>
+          <span>About this translator</span>
+          <span className="toggle-icon">{showAbout ? '▲' : '▼'}</span>
+        </div>
+        {showAbout && (
+          <div className="api-key-body">
+            <p className="about-text">
+              This translator uses Google's Gemini to translate text between languages.
+              You provide your own API key, which is stored locally in your browser and sent directly
+              to Google's servers — this website never stores or sees your key.
+            </p>
+            <p className="about-text">
+              <strong>Why I made this</strong> DeepL is pretty good but it doesn't translate as well as modern LLMs which understand tone and context much better than DeepL. However translating with LLMs is cumbersome because you have to chat with them and tell them "Translate this text into this language". So that's why I made this tool, to offer a convenient UI for translating some text by an LLM. I'm not the first to have this idea, <a href="https://github.com/elisemercury/lingo-ai" target="_blank" rel="noopener noreferrer">lingo-ai</a> is pretty much exactly the same idea, however it's no longer up-to-date and doesn't work anymore.
+            </p>
+          </div>
+        )}
+      </div>
+
       <div className="translator-header">
         <LanguageSelector value={sourceLang} onChange={handleSourceChange} label="Translate from" />
         <LanguageSelector value={targetLang} onChange={setTargetLang} label="Translate to" />
@@ -151,7 +175,16 @@ function TranslatorApp() {
             onChange={setInputText}
             placeholder="Enter text to translate..."
           />
-          <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '8px' }}>
+          <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '8px', gap: '8px', alignItems: 'center' }}>
+            <select
+              className="model-select"
+              value={selectedModel}
+              onChange={(e) => setSelectedModel(e.target.value)}
+              disabled={isTranslating}
+            >
+              <option value="gemini-3.1-flash-lite">gemini-3.1-flash-lite</option>
+              <option value="gemini-3.5-flash">gemini-3.5-flash</option>
+            </select>
             <button
               className="translate-btn"
               onClick={handleTranslate}

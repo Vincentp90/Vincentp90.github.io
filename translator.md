@@ -2,7 +2,7 @@
 layout: page
 title: LLM Translator
 permalink: /translator/
-description: UNDER CONSTRUCTION Translate text with gemini
+description: Translate text with gemini
 ---
 
 <style>
@@ -11,5 +11,5 @@ description: UNDER CONSTRUCTION Translate text with gemini
 
 <div id="root"></div>
 
-<link rel="stylesheet" href="{{ '/assets/translator/css/main-Bo-MqwTC.css' | relative_url }}">
-<script type="module" src="{{ '/assets/translator/js/main-3d45lnBt.js' | relative_url }}"></script>
+<link rel="stylesheet" href="{{ '/assets/translator/css/main-Cqiy5Wle.css' | relative_url }}">
+<script type="module" src="{{ '/assets/translator/js/main-D91aT73G.js' | relative_url }}"></script>

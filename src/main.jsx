@@ -83,20 +83,22 @@ function TranslatorApp() {
       return
     }
 
+    if (!inputText.trim()) return
+
     setIsTranslating(true)
     const langMap = { en: 'English', nl: 'Dutch' }
     const target = langMap[targetLang] || targetLang
 
-    const prompt = `Translate the following text to ${target}. Only output the translation, nothing else.\n\n${inputText}`
+    const prompt = `Translate the following text into ${target}. Output ONLY the direct translation. Do not include introductions, explanations, quotes, or conversational fluff.\n\nText to translate:\n${inputText}`
 
     try {
       const response = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${apiKey}`,
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent?key=${apiKey}`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            contents: [{ role: 'user', parts: [{ text: prompt }] }],
+            contents: [{ parts: [{ text: prompt }] }],
           }),
         }
       )
@@ -107,12 +109,20 @@ function TranslatorApp() {
       }
 
       const data = await response.json()
-      const translated = data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim()
 
-      if (translated) {
-        setOutputText(translated)
+      // 1. Check if the response was blocked by safety filters
+      const finishReason = data?.candidates?.[0]?.finishReason
+      if (finishReason && finishReason !== "STOP") {
+        throw new Error(`Translation blocked by API. Reason: ${finishReason}`)
+      }
+
+      // 2. Safe, precise extraction of the text field
+      const translated = data?.candidates?.[0]?.content?.parts?.[0]?.text
+
+      if (translated && translated.trim()) {
+        setOutputText(translated.trim())
       } else {
-        setOutputText('No translation returned. Please try again.')
+        setOutputText('No translation returned. The model generated an empty response.')
       }
     } catch (error) {
       console.error('Translation failed:', error)
@@ -142,8 +152,8 @@ function TranslatorApp() {
             placeholder="Enter text to translate..."
           />
           <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '8px' }}>
-            <button 
-              className="translate-btn" 
+            <button
+              className="translate-btn"
               onClick={handleTranslate}
               disabled={isTranslating || !inputText.trim()}
             >

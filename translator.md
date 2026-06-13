@@ -12,4 +12,4 @@ description: UNDER CONSTRUCTION Translate text with gemini
 <div id="root"></div>
 
 <link rel="stylesheet" href="{{ '/assets/translator/css/main-Bo-MqwTC.css' | relative_url }}">
-<script type="module" src="{{ '/assets/translator/js/main-BBoXhO5g.js' | relative_url }}"></script>
+<script type="module" src="{{ '/assets/translator/js/main-3d45lnBt.js' | relative_url }}"></script>

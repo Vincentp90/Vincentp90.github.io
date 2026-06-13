@@ -3,8 +3,37 @@ import { createRoot } from 'react-dom/client'
 import './translator.css'
 
 const LANGUAGES = [
+  { code: 'am', name: 'Amharic' },
+  { code: 'ar', name: 'Arabic' },
+  { code: 'bn', name: 'Bengali' },
+  { code: 'de', name: 'German' },
   { code: 'en', name: 'English' },
+  { code: 'es', name: 'Spanish' },
+  { code: 'fa', name: 'Persian' },
+  { code: 'fr', name: 'French' },
+  { code: 'gu', name: 'Gujarati' },
+  { code: 'ha', name: 'Hausa' },
+  { code: 'hi', name: 'Hindi' },
+  { code: 'id', name: 'Indonesian' },
+  { code: 'it', name: 'Italian' },
+  { code: 'ja', name: 'Japanese' },
+  { code: 'kn', name: 'Kannada' },
+  { code: 'ko', name: 'Korean' },
+  { code: 'mr', name: 'Marathi' },
   { code: 'nl', name: 'Dutch' },
+  { code: 'pnb', name: 'Punjabi' },
+  { code: 'pt', name: 'Portuguese' },
+  { code: 'ru', name: 'Russian' },
+  { code: 'sw', name: 'Swahili' },
+  { code: 'ta', name: 'Tamil' },
+  { code: 'te', name: 'Telugu' },
+  { code: 'th', name: 'Thai' },
+  { code: 'tl', name: 'Tagalog' },
+  { code: 'tr', name: 'Turkish' },
+  { code: 'ur', name: 'Urdu' },
+  { code: 'vi', name: 'Vietnamese' },
+  { code: 'zh', name: 'Mandarin Chinese' },
+  { code: 'jv', name: 'Javanese' },
 ]
 
 function LanguageSelector({ value, onChange, label }) {
@@ -73,13 +102,13 @@ function ApiKeyCard() {
 }
 
 function TranslatorApp() {
-  const [sourceLang, setSourceLang] = useState('en')
-  const [targetLang, setTargetLang] = useState('nl')
+  const [sourceLang, setSourceLang] = useState(() => localStorage.getItem('translator_source') || 'en')
+  const [targetLang, setTargetLang] = useState(() => localStorage.getItem('translator_target') || 'nl')
   const [inputText, setInputText] = useState('')
   const [outputText, setOutputText] = useState('')
   const [isTranslating, setIsTranslating] = useState(false)
   const [showAbout, setShowAbout] = useState(false)
-  const [selectedModel, setSelectedModel] = useState('gemini-3.1-flash-lite')
+  const [selectedModel, setSelectedModel] = useState(() => localStorage.getItem('translator_model') || 'gemini-3.1-flash-lite')
 
   const handleTranslate = async () => {
     const apiKey = localStorage.getItem('gemini_api_key')
@@ -91,7 +120,14 @@ function TranslatorApp() {
     if (!inputText.trim()) return
 
     setIsTranslating(true)
-    const langMap = { en: 'English', nl: 'Dutch' }
+    const langMap = {
+      am: 'Amharic', ar: 'Arabic', bn: 'Bengali', de: 'German', en: 'English',
+      es: 'Spanish', fa: 'Persian', fr: 'French', gu: 'Gujarati', ha: 'Hausa',
+      hi: 'Hindi', id: 'Indonesian', it: 'Italian', ja: 'Japanese', kn: 'Kannada',
+      ko: 'Korean', mr: 'Marathi', nl: 'Dutch', pnb: 'Punjabi', pt: 'Portuguese',
+      ru: 'Russian', sw: 'Swahili', ta: 'Tamil', te: 'Telugu', th: 'Thai',
+      tl: 'Tagalog', tr: 'Turkish', ur: 'Urdu', vi: 'Vietnamese', zh: 'Mandarin Chinese', jv: 'Javanese',
+    }
     const target = langMap[targetLang] || targetLang
 
     const prompt = `Translate the following text into ${target}. Output ONLY the direct translation. Do not include introductions, explanations, quotes, or conversational fluff.\n\nText to translate:\n${inputText}`
@@ -137,9 +173,30 @@ function TranslatorApp() {
     }
   }
 
+  const handleSwapLanguages = () => {
+    const prevSource = sourceLang
+    const prevTarget = targetLang
+    setSourceLang(prevTarget)
+    setTargetLang(prevSource)
+    localStorage.setItem('translator_source', prevTarget)
+    localStorage.setItem('translator_target', prevSource)
+    setInputText(outputText)
+    setOutputText(inputText)
+  }
+
   const handleSourceChange = (lang) => {
     setSourceLang(lang)
-    setTargetLang(lang === 'en' ? 'nl' : 'en')
+    localStorage.setItem('translator_source', lang)
+  }
+
+  const handleTargetChange = (lang) => {
+    setTargetLang(lang)
+    localStorage.setItem('translator_target', lang)
+  }
+
+  const handleModelChange = (model) => {
+    setSelectedModel(model)
+    localStorage.setItem('translator_model', model)
   }
 
   return (
@@ -165,7 +222,8 @@ function TranslatorApp() {
 
       <div className="translator-header">
         <LanguageSelector value={sourceLang} onChange={handleSourceChange} label="Translate from" />
-        <LanguageSelector value={targetLang} onChange={setTargetLang} label="Translate to" />
+        <button className="swap-btn" onClick={handleSwapLanguages} title="Swap languages">⇄</button>
+        <LanguageSelector value={targetLang} onChange={handleTargetChange} label="Translate to" />
       </div>
 
       <div className="translator-body">
@@ -179,7 +237,7 @@ function TranslatorApp() {
             <select
               className="model-select"
               value={selectedModel}
-              onChange={(e) => setSelectedModel(e.target.value)}
+              onChange={(e) => handleModelChange(e.target.value)}
               disabled={isTranslating}
             >
               <option value="gemini-3.1-flash-lite">gemini-3.1-flash-lite</option>
